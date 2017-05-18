@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * Iconocoders_Remarketing
+ *
+ * @category  Iconocoders
+ * @package   Iconocoders_Remarketing
+ * @author    Daniel Akos Kovacs, Attila Kiss, Peter Szabo
+ * @copyright 2017 Iconocoders (https://iconocoders.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+
+$helper = Mage::helper("iconocoders_remarketing");
+if (!$helper->isPixelEnabled() || !$helper->isConversionEnabled()) {
+    return;
+}
+$pixelId = $helper->getPixelId();
+/**
+ * @var $_product Mage_Catalog_Model_Product
+ */
+$_product = Mage::getModel('core/session')->getProductToShoppingCart();
+?>
+<?php if ($_product && $_product->getId()): ?>
+    <script>
+        fbq('track', 'AddToCart', {
+            content_name: '<?php echo $_product->getName() ?>',
+            content_type: 'product',
+            content_ids: '<?php echo $_product->getSku()?>',
+            value: '<?php echo number_format((float)$_product->getPrice(), 2, '.', '');?>',
+            currency: '<?php echo Mage::app()->getStore()->getCurrentCurrencyCode();?>'
+        });
+    </script>
+    <?php Mage::getModel('core/session')->unsProductToShoppingCart(); ?>
+<?php endif; ?>

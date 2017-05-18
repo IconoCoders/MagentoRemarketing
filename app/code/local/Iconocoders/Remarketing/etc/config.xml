@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Iconocoders
+ * @package   Iconocoders_Remarketing
+ * @author    Daniel Akos Kovacs, Attila Kiss, Peter Szabo
+ * @copyright 2017 Iconocoders (https://iconocoders.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Iconocoders_Remarketing>
+            <version>0.1.0</version>
+        </Iconocoders_Remarketing>
+    </modules>
+    <global>
+        <blocks>
+            <iconocoders_remarketing>
+                <class>Iconocoders_Remarketing_Block</class>
+            </iconocoders_remarketing>
+        </blocks>
+        <models>
+            <iconocoders_remarketing>
+                <class>Iconocoders_Remarketing_Model</class>
+            </iconocoders_remarketing>
+        </models>
+        <helpers>
+            <iconocoders_remarketing>
+                <class>Iconocoders_Remarketing_Helper</class>
+            </iconocoders_remarketing>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <iconocoders_remarketing>
+                    <file>iconocoders_remarketing.xml</file>
+                </iconocoders_remarketing>
+            </updates>
+        </layout>
+        <events>
+            <checkout_cart_add_product_complete><!-- fires from Mage_Checkout_CartController::addAction() -->
+                <observers>
+                    <iconocoders_remarketing>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>addItemToCart</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </checkout_cart_add_product_complete>
+
+            <controller_action_predispatch_wishlist_index_add><!-- fires when adding to wishlist -->
+                <observers>
+                    <iconocoders_remarketing>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>addItemToWishlist</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </controller_action_predispatch_wishlist_index_add>
+
+            <controller_action_predispatch_wishlist_index_cart><!-- fires when adding from wishlist to cart -->
+                <observers>
+                    <iconocoders_remarketing>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>addItemToCart</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </controller_action_predispatch_wishlist_index_cart>
+
+            <newsletter_subscriber_save_commit_after><!-- fires when customer subscribes on newsletter -->
+                <observers>
+                    <iconocoders_remarketing>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>onCustomerNewsletterSubscribe</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </newsletter_subscriber_save_commit_after>
+
+            <controller_action_postdispatch_newsletter_manage_save><!-- fires when customer subscribes on newsletter via account -->
+                <observers>
+                    <iconocoders_remarketing>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>postdispatchNewsletterManageSave</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </controller_action_postdispatch_newsletter_manage_save>
+
+            <core_block_abstract_to_html_before><!-- adds lead.phtml to head block if customer subscribed -->
+                <observers>
+                    <iconocoders_remarketing>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>insertLeadBlockTemplate</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </core_block_abstract_to_html_before>
+
+            <controller_action_predispatch_checkout_onepage_savePayment><!-- fires on product checkout when payment info been passed -->
+                <observers>
+                    <iconocoders_remarketing>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>predispatchCheckoutOnepageSavePayment</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </controller_action_predispatch_checkout_onepage_savePayment>
+
+            <controller_action_postdispatch_customer_account_createpost><!-- fires after member registration -->
+                <observers>
+                        <iconocoders_remarketing>
+                            <class>iconocoders_remarketing/observer</class>
+                            <method>customerAccountCreatepost</method>
+                        </iconocoders_remarketing>
+                    </observers>
+            </controller_action_postdispatch_customer_account_createpost>
+
+            <controller_action_postdispatch_checkout_onepage_saveBilling>
+                <observers>
+                    <iconocoders_remarketing>
+                        <type>singleton</type>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>checkoutOnepageSaveBilling</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </controller_action_postdispatch_checkout_onepage_saveBilling>
+
+            <customer_address_save_after>
+                <observers>
+                    <iconocoders_remarketing>
+                        <class>iconocoders_remarketing/observer</class>
+                        <method>customerAddressSaveAfter</method>
+                    </iconocoders_remarketing>
+                </observers>
+            </customer_address_save_after>
+
+        </events>
+    </frontend>
+    <default>
+        <iconocoders_remarketing>
+            <general>
+                <enabled>1</enabled>
+                <conversion>0</conversion>
+                <js_remarketing_only>1</js_remarketing_only>
+                <ga_attribute_key>sku</ga_attribute_key>
+            </general>
+        </iconocoders_remarketing>
+    </default>
+</config>

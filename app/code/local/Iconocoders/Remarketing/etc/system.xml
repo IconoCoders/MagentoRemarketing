@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <Iconocoders_Extensions translate="label" module="iconocoders_remarketing">
+            <label>Iconocoders - Modules</label>
+            <sort_order>150</sort_order>
+        </Iconocoders_Extensions>
+    </tabs>
+    <sections>
+        <iconocoders_remarketing module="iconocoders_remarketing">
+            <label>Remarketing</label>
+            <tab>Iconocoders_Extensions</tab>
+            <class>iconocoders-remarketing</class>
+            <frontend_type>text</frontend_type>
+            <sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <tracking>
+                    <label>Remarketing</label>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled>
+                            <label>Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled>
+                        <conversion>
+                            <label>Conversion Enable</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </conversion>
+                        <pixel_id>
+                            <label>Facebook Pixel ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pixel_id>
+                        <ga_conversion_id translate="label comment">
+                            <label>Google Conversion ID</label>
+                            <comment><![CDATA[Obtain conversion ID from <a href="http://www.google.com/ads/adwords/">Google Adwords</a>]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ga_conversion_id>
+                        <ga_attribute_key translate="label comment">
+                            <label>Product ID key</label>
+                            <comment><![CDATA[Must match the Product ID from the Google Merchant Center feed.]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>iconocoders_remarketing/system_config_source_attributes</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ga_attribute_key>
+                    </fields>
+                </tracking>
+            </groups>
+        </iconocoders_remarketing>
+    </sections>
+</config>

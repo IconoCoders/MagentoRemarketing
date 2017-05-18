@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Iconocoders_Remarketing
+ *
+ * @category  Iconocoders
+ * @package   Iconocoders_Remarketing
+ * @author    Daniel Akos Kovacs, Attila Kiss, Peter Szabo
+ * @copyright 2017 Iconocoders (https://iconocoders.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ *
+ */
+
+$helper = Mage::helper("iconocoders_remarketing");
+if (!$helper->isPixelEnabled() || !$helper->isConversionEnabled()) {
+    return;
+}
+$pixelId = $helper->getPixelId();
+
+/**
+ * @var $pixel_obj Varien_Object
+ */
+$pixel_obj = Mage::getModel('core/session')->getCustomerEditAddressData();
+
+?>
+<?php if ($pixel_obj && $pixel_obj->getValue()): ?>
+    <script>
+        var pixel_value = '<?php echo $pixel_obj->getValue() ?>';
+        if(pixel_value.length) {
+            fbq('track', 'AddPaymentInfo', {
+                value: pixel_value,
+                currency: '<?php echo Mage::app()->getStore()->getCurrentCurrencyCode() ?>',
+                content_name: '<?php echo $pixel_obj->getContentName() ?>'
+            });
+        }
+    </script>
+    <?php Mage::getModel('core/session')->unsCustomerEditAddressData(); ?>
+<?php endif; ?>
