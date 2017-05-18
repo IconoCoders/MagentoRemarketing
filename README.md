@@ -1,8 +1,5 @@
 # MagentoRemarketing
-Magento 1.9.x.x Google &amp; Facebook Remarketing module
-
-# MagentoRemarketing
-=====================
+Magento 1.9.x.x Google &amp; Facebook Remarketing module       
 Adds the Facebook & Google dynamic remarketing tags to the magento body
 
 Facts
