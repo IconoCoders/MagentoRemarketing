@@ -4,7 +4,7 @@ Adds the Facebook & Google dynamic remarketing tags to the magento body
 
 Facts
 -----
-- version: 1.0.0
+- version: 1.0.0 (0.1.0)    
 - extension key: Iconocoders_Remarketing
 
 Description
